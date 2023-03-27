@@ -3,6 +3,7 @@
  * puts_half - Prints half of a string.
  * @str: The string to be printed.
  */
+
 void puts_half(char *str)
 {
 	int index = 0, len = 0, n;
