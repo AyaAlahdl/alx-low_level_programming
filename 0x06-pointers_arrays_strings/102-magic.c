@@ -15,6 +15,6 @@ int main(void)
 	p = &n;
 	*(p + 5) = 98;
  /* ...so that this prints 98\n */
-	print("a[2] = %d\n", a[2]);
+	putchar("a[2] = %d\n", a[2]);
 	return (0);
 }
