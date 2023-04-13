@@ -181,7 +181,7 @@ void add_nums(char *final_prod, char *next_prod, int next_len)
 /**
  * main - Multiplies two positive numbers.
  * @argv: The number of arguments passed to the program.
- * @argc: An array of pointers to the arguments.
+ * @argc: An array of pointers to arguments.
  *
  * Description: If the number of arguments is incorrect or one number
  *              contains non-digits, the function exits with a status of 98.
