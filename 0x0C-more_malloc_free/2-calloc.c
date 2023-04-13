@@ -1,22 +1,7 @@
 #include "main.h"
 #include <stdlib.h>
 
-/**
- * *_memset - files memory
- * @s: pointer
- * @b: constant
- * @n: max byte
- * Reutrn: s
- */
 
-char *_memset(char *s, char b, unsigned int n)
-{
-	char *ptr = s;
-
-	while (n--)
-		*s++ = b;
-	return (ptr);
-}
 
 /**
  * _calloc - Allocates memory for an array of a certain number
@@ -30,15 +15,21 @@ char *_memset(char *s, char b, unsigned int n)
 void *_calloc(unsigned int nmemb, unsigned int size)
 {
 	void *m;
+	char *f;
+	unsigned int index;
 
-	if (size == 0 || nmemb == 0)
-		return (NULL);
-	m = malloc(sizeof(int) * nmemb);
-
-	if (m == 0)
+	if (nmemb == 0 || size == 0)
 		return (NULL);
 
-	_memset(m, 0, sizeof(int) * nmemb);
+	m = malloc(size * nmemb);
+
+	if (m == NULL)
+		return (NULL);
+
+	f = m;
+
+	for (index = 0; index < (size * nmemb); index++)
+		f[index] = '\0';
 
 	return (m);
 
