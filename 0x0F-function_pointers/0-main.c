@@ -26,27 +26,27 @@ void print_name_uppercase(char *name)
 	i = 0;
 	while (name[i])
 	{
-	if (name[i] >= 'a' && name[i] <= 'z')
-	{
-		putchar(name[i] + 'A' - 'a');
-	}
-	else
-	{
-		putchar(name[i]);
-	}
-	i++;
+		if (name[i] >= 'a' && name[i] <= 'z')
+		{
+			putchar(name[i] + 'A' - 'a');
+		}
+		else
+		{
+			putchar(name[i]);
+		}
+		i++;
 	}
 }
 
 /**
- * main - check the code
+ * main - check the code for Holberton School students.
  *
  * Return: Always 0.
  */
 int main(void)
 {
-	print_name("Bob", print_name_as_is);
-	print_name("Bob Dylan", print_name_uppercase);
+	print_name("Danton", print_name_as_is);
+	print_name("Rick Harris", print_name_uppercase);
 	printf("\n");
 	return (0);
 }
