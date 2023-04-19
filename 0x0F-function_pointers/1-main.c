@@ -20,13 +20,11 @@ void print_elem(int elem)
  */
 void print_elem_hex(int elem)
 {
-	void print_elem_hex(int elem)
-{
 	printf("0x%x\n", elem);
 }
 
 /**
- * main - check the code for Holberton School students.
+ * main - check the code
  *
  * Return: Always 0.
  */
