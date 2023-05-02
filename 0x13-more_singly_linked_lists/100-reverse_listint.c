@@ -5,26 +5,23 @@
  * @head: A pointer to the address of
  *        the head of the list_t list.
  *
- * Return: A pointer to the first node of the reversed list.
+ * Return: Address of head.
  */
 listint_t *reverse_listint(listint_t **head)
 {
-	listint_t *ahead, *behind;
+	listint_t *node = NULL, *next = NULL;
 
-	if (head == NULL || *head == NULL)
+	if (!head || !*head)
 		return (NULL);
 
-	behind = NULL;
-
-	while ((*head)->next != NULL)
+	node = *head;
+	*head = NULL;
+	while (node)
 	{
-		ahead = (*head)->next;
-		(*head)->next = behind;
-		behind = *head;
-		*head = ahead;
+		next = node->next;
+		node->next = *head;
+		*head = node;
+		node = next;
 	}
-
-	(*head)->next = behind;
-
 	return (*head);
 }
