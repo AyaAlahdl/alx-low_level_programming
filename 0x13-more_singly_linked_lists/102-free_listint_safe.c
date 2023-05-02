@@ -15,10 +15,10 @@ size_t free_listint_safe(listint_t **h);
 listint_t *find_listint_loop_fl(listint_t *head)
 {
 	listint_t *p, *e;
-	
+
+
 	if (head == NULL)
 		return (NULL);
-
 	for (e = head->next; e != NULL; e = e->next)
 	{
 		if (e == e->next)
@@ -37,8 +37,6 @@ listint_t *find_listint_loop_fl(listint_t *head)
  *     the head of the listint_t list.
  *
  * Return: The size of the list that was freed.
- *
- * Description: The function sets the head to NULL.
  */
 size_t free_listint_safe(listint_t **h)
 {
@@ -49,10 +47,10 @@ size_t free_listint_safe(listint_t **h)
 
 	if (h == NULL || *h == NULL)
 		return (0);
-
 	l = find_listint_loop_fl(*h);
+
 	for (len = 0; (*h != l || loop) && *h != NULL; *h = next)
-		{
+	{
 			len++;
 			next  = (*h)->next;
 			if (*h == l && loop)
@@ -68,7 +66,7 @@ size_t free_listint_safe(listint_t **h)
 				loop = 0;
 			}
 			free(*h);
-		}
+	}
 	*h = NULL;
 	return (len);
 }
