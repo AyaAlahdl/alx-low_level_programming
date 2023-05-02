@@ -5,7 +5,7 @@
 size_t free_listint_safe(listint_t **h);
 
 /**
- * looped_listint_count - Counts the number of unique nodes
+ * listin_t *find_listint_loop_fl - Counts the number of unique nodes
  *                      in a looped listint_t linked list.
  * @head: A pointer to the head of the listint_t to check.
  *
@@ -15,8 +15,7 @@ size_t free_listint_safe(listint_t **h);
 listint_t *find_listint_loop_fl(listint_t *head)
 {
 	listint_t *p, *e;
-
-
+	
 	if (head == NULL)
 		return (NULL);
 
