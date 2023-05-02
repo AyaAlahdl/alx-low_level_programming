@@ -1,7 +1,7 @@
 
 #include "lists.h"
+#include <stdlib.h>
 
-size_t looped_listint_count(listint_t *head);
 size_t free_listint_safe(listint_t **h);
 
 /**
@@ -12,44 +12,23 @@ size_t free_listint_safe(listint_t **h);
  * Return: If the list is not looped - 0.
  *         Otherwise - the number of unique nodes in the list.
  */
-size_t looped_listint_count(listint_t *head)
+listint_t *find_listint_loop_fl(listint_t *head)
 {
-	listint_t *tortoise, *hare;
-	size_t nodes = 1;
+	listint_t *p, *e;
 
-	if (head == NULL || head->next == NULL)
-		return (0);
 
-	tortoise = head->next;
-	hare = (head->next)->next;
+	if (head == NULL)
+		return (NULL);
 
-	while (hare)
+	for (e = head->next; e != NULL; e = e->next)
 	{
-		if (tortoise == hare)
-		{
-			tortoise = head;
-			while (tortoise != hare)
-			{
-				nodes++;
-				tortoise = tortoise->next;
-				hare = hare->next;
-			}
-
-			tortoise = tortoise->next;
-			while (tortoise != hare)
-			{
-				nodes++;
-				tortoise = tortoise->next;
-			}
-
-			return (nodes);
-		}
-
-		tortoise = tortoise->next;
-		hare = (hare->next)->next;
+		if (e == e->next)
+			return (e);
+		for (p = head; p != e; p = p->next)
+			if (p == e->next)
+				return (e->next);
 	}
-
-	return (0);
+	return (NULL);
 }
 
 /**
@@ -64,35 +43,34 @@ size_t looped_listint_count(listint_t *head)
  */
 size_t free_listint_safe(listint_t **h)
 {
-	listint_t *tmp;
-	size_t nodes, index;
+	listint_t *next, *l;
+	size_t len;
+	int loop = 1;
 
-	nodes = looped_listint_count(*h);
 
-	if (nodes == 0)
-	{
-		for (; h != NULL && *h != NULL; nodes++)
+	if (h == NULL || *h == NULL)
+		return (0);
+
+	l = find_listint_loop_fl(*h);
+	for (len = 0; (*h != l || loop) && *h != NULL; *h = next)
 		{
-			tmp = (*h)->next;
+			len++;
+			next  = (*h)->next;
+			if (*h == l && loop)
+			{
+				if (l == l->next)
+				{
+					free(*h);
+					break;
+				}
+				len++;
+				next = next->next;
+				free((*h)->next);
+				loop = 0;
+			}
 			free(*h);
-			*h = tmp;
 		}
-	}
-
-	else
-	{
-		for (index = 0; index < nodes; index++)
-		{
-			tmp = (*h)->next;
-			free(*h);
-			*h = tmp;
-		}
-
-		*h = NULL;
-	}
-
-	h = NULL;
-
-	return (nodes);
+	*h = NULL;
+	return (len);
 }
 
