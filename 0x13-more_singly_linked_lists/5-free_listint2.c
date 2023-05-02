@@ -6,6 +6,8 @@
  *        head of the listint_t list.
  *
  * Description: Sets the head to NULL.
+ *
+ * Return: void
  */
 void free_listint2(listint_t **head)
 {
@@ -13,13 +15,13 @@ void free_listint2(listint_t **head)
 
 	if (!head)
 		return;
-	n = *head;
 
+	n = *head;
 	while (n)
 	{
 		tmp = n;
 		n = n->next;
-		free(tmp);	
+		free(tmp);
 	}
 	*head = NULL;
 }
